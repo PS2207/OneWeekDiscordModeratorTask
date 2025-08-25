@@ -91,3 +91,51 @@ Saves bandwidth and loads videos faster.
 Added Static Resource Page (video.html) to test video streaming directly from browser.
 
 # 3.ApiResponse with Builder Pattern
+
+# **********************************************************************************************
+
+# 🚀 Day 34 Moderator Task :-
+
+🤖 CREATING a AI Chat Spring Boot Project:
+# 📝 1. Project Overview:
+
+This project is a Spring Boot-based AI chat application that integrates with Hugging Face large language models (LLMs), specifically HuggingFaceH4/zephyr-7b-beta. It allows users to send prompts or conversation messages via a REST API and receive AI-generated responses in real-time.
+
+The main goal of the project is to provide a lightweight, self-contained backend service for AI chat functionalities that can be easily integrated into web, mobile, or desktop applications.
+
+# ⚙️ 2. How It Works (High-Level)
+
+*User sends a request to the Spring Boot API.
+*The backend service (AIChatService) formats the request and sends it to the Hugging Face endpoint using the API token.
+*Hugging Face LLM processes the input and returns a response.
+*Spring Boot API parses the response and sends it back to the client as JSON.
+*This architecture ensures real-time AI responses without storing any conversation data on the backend, keeping it lightweight and secure.
+
+# 📂 3. Project Structure
+com.ai.chat
+ ├── Day4ChatUsingAiSpringBootApplication.java   # Main Spring Boot application
+ ├── controller
+ │    └── AIController.java   # REST endpoint
+ └── service
+      └── AIChatService.java  # Calls Hugging Face API
+
+# 📡 4 .API Usage Test in Postman:
+Endpoint:
+POST http://localhost:8081/api/ai/chat
+Headers:
+Content-Type: application/json
+Request Body (JSON)
+{
+  "prompt": "Tell me a fun fact about space."
+}
+
+
+#-------------------------------------------------------------
+
+You should now get a real response back:
+{
+  "model": "HuggingFaceH4/zephyr-7b-beta",
+  "messages": [
+    {"role": "user", "content": "Hello, how are you?"}
+  ]
+}
