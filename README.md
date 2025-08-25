@@ -94,7 +94,7 @@ Added Static Resource Page (video.html) to test video streaming directly from br
 
 # **********************************************************************************************
 
-# 🚀 Day 34 Moderator Task :-
+# 🚀 Day 4 Moderator Task :-
 
 🤖 CREATING a AI Chat Spring Boot Project:
 # 📝 1. Project Overview:
