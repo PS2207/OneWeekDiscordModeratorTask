@@ -139,3 +139,99 @@ You should now get a real response back:
     {"role": "user", "content": "Hello, how are you?"}
   ]
 }
+
+# *************************************************************************************************
+Day5 – OpenAI Chat with Spring Boot
+📌 Project Overview
+This project demonstrates how to integrate OpenAI’s GPT model into a Spring Boot application using the Spring AI
+framework.
+With this application, you can: 
+Send text prompts (questions, instructions, etc.) to OpenAI.
+Receive AI-generated responses via REST API.
+Securely store your API key in a .env file.
+
+The goal of this project is to show how to build an AI-powered chat backend that can be extended into chatbots, assistants, or intelligent applications.
+
+# ⚙️ Tech Stack
+Spring Boot 3.x
+Spring AI (OpenAI Starter)
+Maven
+Java 17+
+OpenAI API
+Dotenv (for secure key management)
+
+# 🏗️ Project Structure
+Day5-OpenAIChat/
+│── src/main/java/com/chat/ai/
+│   ├── controller/ChatController.java   # REST endpoint
+│   ├── service/ChatService.java         # Service to call OpenAI
+│── src/main/resources/
+│   ├── application.properties           # Config
+│── .env                                 # API key (ignored by git)
+│── pom.xml                              # Maven dependencies
+
+-------------------------------------------------------------------------
+# 🔑 Setup Instructions
+1️⃣ Clone the project
+git clone https://github.com/your-username/Day5-OpenAIChat.git
+cd Day5-OpenAIChat
+
+2️⃣ Add dependencies In pom.xml:
+
+	<dependency>
+			<groupId>me.paulschwarz</groupId>
+			<artifactId>spring-dotenv</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.ai</groupId>
+			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+			<version>1.0.0-M6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+
+Run:
+mvn clean install
+
+3️⃣ Create .env file
+At the root of the project (same level as pom.xml), create .env:
+OPENAI_API_KEY=sk-your-secret-key
+
+
+# ⚠️ Do not commit .env to GitHub. It must remain private.
+
+4️⃣ Configure application.properties
+spring.ai.openai.api-key=${OPENAI_API_KEY}
+spring.ai.openai.chat.options.model=gpt-4o-mini
+
+5️⃣ Run the application
+
+In Eclipse/IntelliJ or via command line:
+mvn spring-boot:run
+
+# 🚀 Usage
+Once running, the REST API is available at:
+Endpoint:
+GET http://localhost:8081/api/v1/chat?inputText=what is sprinboot?
+
+
+# Response Example:
+spring boot is a Java framework......
+
+# 📚 How It Works
+ChatController receives the user’s input via REST.
+ChatService wraps the input into a Prompt and sends it to OpenAI using Spring AI.
+OpenAI generates a text response.
+The response is returned as plain text to the client.
+
+# 🔮 Future Enhancements
+Add conversation history (multi-turn chat).
+Support streaming responses.
+Add frontend (React/Angular) for a chat UI.
+Deploy to cloud (Render, AWS, etc.).
