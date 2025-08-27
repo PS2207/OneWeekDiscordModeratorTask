@@ -235,3 +235,59 @@ Add conversation history (multi-turn chat).
 Support streaming responses.
 Add frontend (React/Angular) for a chat UI.
 Deploy to cloud (Render, AWS, etc.).
+
+
+# *************************************************************************************
+Day 6 – Spring Security with JWT Authentication
+# 📌 Project Overview
+This project demonstrates how to secure a Spring Boot application using Spring Security and JWT (JSON Web Token). It includes authentication, authorization, and role-based access control, along with sample APIs for User and Patient entities.
+
+# 🚀 Features Implemented Today
+
+✅ Configured Spring Security with JWT-based authentication
+✅ Created User and Patient entities with repositories
+✅ Implemented User Registration & Login APIs (AuthController)
+✅ Added JWT Token Generation & Validation using AuthUtil
+✅ Built a JwtAuthFilter for validating tokens in incoming requests
+✅ Created PatientController APIs (secured endpoints)
+✅ Role-based security setup in WebSecurityConfig
+
+# 📂 Project Structure
+src/main/java/com/springsecurity/jwtauth/
+│── Day6SpringsecurityJwtApplication.java   # Main class
+│── config/AppConfig.java                   # Bean configurations
+│── controller/AuthController.java          # Login & Signup APIs
+│── controller/PatientController.java       # Patient APIs
+│── dto/                                    # DTOs for request/response
+│── entity/User.java                        # User entity
+│── entity/Patient.java                     # Patient entity
+│── repo/UserRepo.java                      # User repository
+│── repo/PatientRepo.java                   # Patient repository
+│── security/AuthService.java               # Authentication service
+│── security/AuthUtil.java                  # JWT utility class
+│── security/CustomUserDetailsService.java  # User details for Spring Security
+│── security/JwtAuthFilter.java             # JWT request filter
+│── security/WebSecurityConfig.java         # Security configuration
+
+# 🔑 API Endpoints
+Authentication (/api/auth)
+POST /signup → Register new user
+POST /login → Authenticate user & return JWT token
+Patients (/api/patients) (secured, requires JWT)
+
+
+# ⚙️ Tech Stack
+
+Java 17+
+Spring Boot (Web, Security, JPA)
+JWT for authentication
+MySQL / H2 (configurable via application.properties)
+
+# ▶️ How to Run
+Clone the repository
+git clone <repo-url>
+cd day6-springsecurity-jwt
+Configure database in application.properties
+Run the Spring Boot app
+mvn spring-boot:run
+Test APIs with Postman
