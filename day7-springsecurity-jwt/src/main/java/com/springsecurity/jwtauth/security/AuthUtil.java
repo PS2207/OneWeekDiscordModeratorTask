@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.springsecurity.jwtauth.entity.User;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
@@ -31,19 +32,29 @@ public class AuthUtil {
 				.subject(user.getUsername())
 				.claim("userId", user.getId().toString())
 				.issuedAt(new Date())
-				.expiration(new Date(System.currentTimeMillis() + 1000*0*10))
+				.expiration(new Date(System.currentTimeMillis() + 1000*60*10))
 				.signWith(getSecretKey())
 				.compact();
 	}
 
-	//after login craete for 
+	//after login - to work with filter- fill securitycontextholder with find user from database  HS512 Jwts.SIG.HS512
 	public String getUsernameFromToken(String token) {
 	
-		Claims claims= Jwts.parser()
-				.verifyWith(getSecretKey())
-				.build()
-				.parseSignedClaims(token)
-				.getPayload();
-		return claims.getSubject();
+//		Claims claims= Jwts.builder()
+//				.verifyWith(getSecretKey())
+//				.build()
+//				.parseSignedClaims(token)
+//				.getPayload();
+		 // Parse the JWT and validate signature
+	    Jws<Claims> jwsClaims = Jwts.parserBuilder()
+	            .setSigningKey(getSecretKey())
+	            .build()
+	            .parseClaimsJws(token);  // returns Jws<Claims>
+
+	    return jwsClaims.getBody().getSubject(); // Extract username
+		
+		
+		
+//		return claims.getSubject();
 	}
 }

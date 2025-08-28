@@ -291,3 +291,17 @@ Configure database in application.properties
 Run the Spring Boot app
 mvn spring-boot:run
 Test APIs with Postman
+
+-----------------------------------------------------------------
+# Day 7 – GlobalExceptionHandling
+Created a GlobalExceptionHandler using @RestControllerAdvice to handle:
+
+UsernameNotFoundException → 404 Not Found
+AuthenticationException → 401 Unauthorized
+JwtException → 401 Unauthorized
+AccessDeniedException → 403 Forbidden
+Generic Exception → 500 Internal Server Error
+
+Added a custom ApiException response structure for consistent error messages.
+Currently, errors from filters (like JwtAuthFilter) are handled locally, but not propagated to MVC layer.
+Plan: Wrap filter code in try-catch and delegate to HandlerExceptionResolver to forward exceptions to MVC layer.

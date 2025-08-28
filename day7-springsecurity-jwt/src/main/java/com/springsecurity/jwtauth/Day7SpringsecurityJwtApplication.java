@@ -11,3 +11,6 @@ public class Day7SpringsecurityJwtApplication {
 	}
 
 }
+//if using HS512 as your JWT signing algorithm, but the secret key is too short.
+//HS512 requires a key size at least 512 bits = 64 bytes = 64 characters (if ASCII/UTF-8).
+//Your current key is 320 bits (~40 characters), so JJWT throws a WeakKeyException.
